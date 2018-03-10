@@ -1,4 +1,4 @@
-{% set version = '3.1' %}
+{% set version = "3.2" %}
 
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
@@ -12,7 +12,7 @@ source:
   url:
     - https://cran.r-project.org/src/contrib/hdrcde_{{ version }}.tar.gz
     - https://cran.r-project.org/src/contrib/Archive/hdrcde/hdrcde_{{ version }}.tar.gz
-  sha256: 9c86537f065167e90fab2a4adc2e87453b05c66fd71e6d33ea1ebc30ffedf608
+  sha256: bc0fd22b7196985bc1ae47b5bcfb2535b4377b9d60261bec77093231c5ab01a4
 
 build:
   number: 0
@@ -30,6 +30,8 @@ requirements:
     - r-ks
     - r-locfit
     - r-mvtnorm
+    - r-ggplot2
+    - r-rcolorbrewer
     - posix                # [win]
     - {{native}}toolchain  # [win]
     - gcc                  # [not win]
@@ -41,6 +43,8 @@ requirements:
     - r-ks
     - r-locfit
     - r-mvtnorm
+    - r-ggplot2
+    - r-rcolorbrewer
     - libgcc  # [not win]
 
 test:
