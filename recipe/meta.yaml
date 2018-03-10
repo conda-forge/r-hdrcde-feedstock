@@ -30,6 +30,8 @@ requirements:
     - r-ks
     - r-locfit
     - r-mvtnorm
+    - r-ggplot2
+    - r-rcolorbrewer
     - posix                # [win]
     - {{native}}toolchain  # [win]
     - gcc                  # [not win]
@@ -41,6 +43,8 @@ requirements:
     - r-ks
     - r-locfit
     - r-mvtnorm
+    - r-ggplot2
+    - r-rcolorbrewer
     - libgcc  # [not win]
 
 test:
