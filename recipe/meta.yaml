@@ -15,7 +15,8 @@ source:
   sha256: bc0fd22b7196985bc1ae47b5bcfb2535b4377b9d60261bec77093231c5ab01a4
 
 build:
-  number: 0
+  merge_build_host: True  # [win]
+  number: 1
   # r-ks is not available for win or osx
   skip: true  # [win or osx]
 
@@ -24,6 +25,12 @@ build:
     - lib/
 requirements:
   build:
+    - posix                # [win]
+    - {{ compiler('fortran') }}        # [unix]
+    - {{ compiler('m2w64_fortran') }}  # [win]
+    - {{ compiler('c') }}        # [unix]
+    - {{ compiler('m2w64_c') }}  # [win]
+  host:
     - r-base
     - r-kernsmooth
     - r-ash
@@ -32,9 +39,6 @@ requirements:
     - r-mvtnorm
     - r-ggplot2
     - r-rcolorbrewer
-    - posix                # [win]
-    - {{native}}toolchain  # [win]
-    - gcc                  # [not win]
 
   run:
     - r-base
@@ -45,7 +49,6 @@ requirements:
     - r-mvtnorm
     - r-ggplot2
     - r-rcolorbrewer
-    - libgcc  # [not win]
 
 test:
   commands:
