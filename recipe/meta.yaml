@@ -1,5 +1,4 @@
-{% set version = "3.2" %}
-
+{% set version = '3.2' %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -8,62 +7,67 @@ package:
   version: {{ version|replace("-", "_") }}
 
 source:
-  fn: hdrcde_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/hdrcde_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/hdrcde/hdrcde_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/hdrcde_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/hdrcde/hdrcde_{{ version }}.tar.gz
   sha256: bc0fd22b7196985bc1ae47b5bcfb2535b4377b9d60261bec77093231c5ab01a4
 
 build:
   merge_build_host: True  # [win]
-  number: 1
-  # r-ks is not available for win or osx
-  skip: true  # [win or osx]
-
+  number: 2
   rpaths:
     - lib/R/lib/
     - lib/
+
 requirements:
   build:
-    - posix                # [win]
-    - {{ compiler('fortran') }}        # [unix]
-    - {{ compiler('m2w64_fortran') }}  # [win]
-    - {{ compiler('c') }}        # [unix]
-    - {{ compiler('m2w64_c') }}  # [win]
+    - {{ compiler('c') }}        # [not win]
+    - {{ compiler('fortran') }}  # [not win]
+    - {{native}}toolchain        # [win]
+    - {{posix}}filesystem        # [win]
+    - {{posix}}make
+    - {{posix}}sed  # [win]
+    - {{posix}}coreutils  # [win]
+    - {{posix}}sed               # [win]
+    - {{posix}}coreutils         # [win]
+    - {{posix}}zip               # [win]
   host:
     - r-base
     - r-kernsmooth
+    - r-rcolorbrewer
     - r-ash
+    - r-ggplot2
     - r-ks
     - r-locfit
-    - r-mvtnorm
-    - r-ggplot2
-    - r-rcolorbrewer
-
   run:
     - r-base
+    - {{native}}gcc-libs         # [win]
     - r-kernsmooth
+    - r-rcolorbrewer
     - r-ash
+    - r-ggplot2
     - r-ks
     - r-locfit
-    - r-mvtnorm
-    - r-ggplot2
-    - r-rcolorbrewer
 
 test:
   commands:
-    - $R -e "library('hdrcde')"  # [not win]
+    - $R -e "library('hdrcde')"           # [not win]
     - "\"%R%\" -e \"library('hdrcde')\""  # [win]
 
 about:
-  home: http://www.robjhyndman.com/software/hdrcde
-  license: GPL (>= 2)
+  home: https://github.com/robjhyndman/hdrcde
+  license: GPL-3
   summary: Computation of highest density regions in one and two dimensions, kernel estimation
     of univariate density functions conditional on one covariate, and multimodal regression.
   license_family: GPL3
+  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'  # [unix]
+  license_file: '{{ environ["PREFIX"] }}\R\share\licenses\GPL-3'  # [win]
 
 extra:
   recipe-maintainers:
     - johanneskoester
     - bgruening
     - daler
+    - jdblischak
+    - cbrueffer
+    - dbast
