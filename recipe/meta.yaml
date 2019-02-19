@@ -1,4 +1,4 @@
-{% set version = '3.2' %}
+{% set version = "3.3" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,11 +10,11 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/hdrcde_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/hdrcde/hdrcde_{{ version }}.tar.gz
-  sha256: bc0fd22b7196985bc1ae47b5bcfb2535b4377b9d60261bec77093231c5ab01a4
+  sha256: 4b9d3f845e1e652f47413d33be35fa2b2edab3385a4e64c06201d7c1085f5830
 
 build:
   merge_build_host: True  # [win]
-  number: 1002
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
