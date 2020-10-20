@@ -14,7 +14,7 @@ source:
 
 build:
   merge_build_host: True  # [win]
-  number: 3
+  number: 4
   rpaths:
     - lib/R/lib/
     - lib/
@@ -57,18 +57,13 @@ test:
 
 about:
   home: https://github.com/robjhyndman/hdrcde
-  license: GPL-3
+  license: GPL-3.0-only
   summary: Computation of highest density regions in one and two dimensions, kernel estimation
     of univariate density functions conditional on one covariate, and multimodal regression.
   license_family: GPL3
-  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'
+  license_file:
+    - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
 
 extra:
   recipe-maintainers:
     - conda-forge/r
-    - johanneskoester
-    - bgruening
-    - daler
-    - jdblischak
-    - cbrueffer
-    - dbast
