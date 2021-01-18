@@ -1,4 +1,4 @@
-{% set version = "3.3" %}
+{% set version = "3.4" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,11 +10,11 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/hdrcde_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/hdrcde/hdrcde_{{ version }}.tar.gz
-  sha256: 4b9d3f845e1e652f47413d33be35fa2b2edab3385a4e64c06201d7c1085f5830
+  sha256: 4341c6a021da46dcae3b1ef6d580e84dcf625c2b2139f537d0c26ec90899149b
 
 build:
-  merge_build_host: True  # [win]
-  number: 4
+  merge_build_host: true  # [win]
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
@@ -58,8 +58,7 @@ test:
 about:
   home: https://github.com/robjhyndman/hdrcde
   license: GPL-3.0-only
-  summary: Computation of highest density regions in one and two dimensions, kernel estimation
-    of univariate density functions conditional on one covariate, and multimodal regression.
+  summary: Computation of highest density regions in one and two dimensions, kernel estimation of univariate density functions conditional on one covariate, and multimodal regression.
   license_family: GPL3
   license_file:
     - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
