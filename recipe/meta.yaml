@@ -1,4 +1,4 @@
-{% set version = "3.4" %}
+{% set version = "3.5.0" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,10 +9,10 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/hdrcde_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/hdrcde/hdrcde_{{ version }}.tar.gz
-  sha256: 4341c6a021da46dcae3b1ef6d580e84dcf625c2b2139f537d0c26ec90899149b
+  sha256: 3affe9cafe987fd0973b54ed50a423de60ec6412aa1416733543448cddc5b32a
 
 build:
-  number: 4
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
